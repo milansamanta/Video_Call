@@ -29,13 +29,14 @@ SECRET_KEY = 'django-insecure-op3*b-*njqz!!56($z!2#@_^)$-d0+r@pbq!0vligif!8@wsj9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'daphne',
+    'corsheaders',
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -138,15 +140,15 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-ALLOWED_HOSTS = ['http://localhost', "127.0.0.1"]
-CORS_ALLOWED_ALL_ORIGINS = [
+CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "http://localhost",
 ]
+CORS_ALLOW_ALL_ORIGINS = False
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'

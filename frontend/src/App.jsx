@@ -147,7 +147,7 @@ export default function App() {
 
     // Build signaling WebSocket URL
     // Standard Django runs on port 8000. Fallback to current hostname.
-    const wsUrl = `ws://${window.location.hostname}:8000/ws/call/${roomName.trim()}/`;
+    const wsUrl = `ws://${window.location.host}/ws/call/${roomName.trim()}/`;
     console.log("Connecting to WebSocket:", wsUrl);
     ws.current = new WebSocket(wsUrl);
 

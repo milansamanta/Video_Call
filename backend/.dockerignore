@@ -10,6 +10,8 @@ venv/
 env/
 ENV/
 
+Dockerfile
+
 # Ignore local database and media uploads (if using SQLite)
 *.sqlite3
 media/

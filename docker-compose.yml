@@ -1,14 +1,21 @@
 version: '3.8'
 
 services:
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+
   backend:
     build: ./backend
     volumes:
-      - django_static: /app/staticfiles
+      - django_static:/app/staticfiles
     environment:
       - DEBUG=0
+      - AIVEN_REDIS_URI=redis://redis:6379
     expose:
       - 8000
+    depends_on:
+      - redis
 
   frontend:
     build: ./frontend
@@ -25,3 +32,6 @@ services:
     depends_on:
       - backend
       - frontend
+
+volumes:
+  django_static:

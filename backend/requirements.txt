@@ -1,5 +1,7 @@
 Django
-channels[daphne]
+channels
 channels_redis
 django-cors-headers
-uvicorn
+uvicorn[standard]
+gunicorn
+python-dotenv
