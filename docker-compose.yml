@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    volumes:
+      - django_static: /app/staticfiles
+    environment:
+      - DEBUG=0
+    expose:
+      - 8000
+
+  frontend:
+    build: ./frontend
+    expose:
+      - 80
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - django_static:/app/staticfiles:ro
+    depends_on:
+      - backend
+      - frontend
