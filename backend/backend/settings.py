@@ -24,12 +24,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-op3*b-*njqz!!56($z!2#@_^)$-d0+r@pbq!0vligif!8@wsj9'
+if os.getenv("SECRET_KEY", None) is None:
+    raise ValueError("SECRET_KEY environment variable is not set")
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', "backend-image-latest-lq5i.onrender.com", ".onrender.com",]
 
 
 # Application definition
@@ -143,6 +145,7 @@ USE_TZ = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://localhost",
+    "https://video-call-nine-pi.vercel.app",
 ]
 CORS_ALLOW_ALL_ORIGINS = False
 
