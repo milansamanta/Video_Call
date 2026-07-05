@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+
 export default function App() {
   const [isJoined, setIsJoined] = useState(false);
   const [roomName, setRoomName] = useState('');
@@ -147,7 +149,9 @@ export default function App() {
 
     // Build signaling WebSocket URL
     // Standard Django runs on port 8000. Fallback to current hostname.
-    const wsUrl = `ws://${window.location.host}/ws/call/${roomName.trim()}/`;
+    const urlObj = new URL(API_URL);
+    const wsProto = urlObj.protocol === 'https:' ? 'wss' : 'ws';
+    const wsUrl = `${wsProto}://${urlObj.host}/ws/call/${roomName.trim()}/`;
     console.log("Connecting to WebSocket:", wsUrl);
     ws.current = new WebSocket(wsUrl);
 
