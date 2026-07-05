@@ -1,0 +1,8 @@
+{
+  "services": {
+    "web-frontend": {
+      "root": "./",
+      "entrypoint": "Dockerfile.vercel"
+    }
+  }
+}
