@@ -4,5 +4,11 @@
       "root": "./",
       "entrypoint": "Dockerfile.vercel"
     }
-  }
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "web-frontend"
+    }
+  ]
 }

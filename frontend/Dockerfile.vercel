@@ -9,6 +9,7 @@ RUN npm ci
 COPY . .
 
 RUN npm run build
+COPY --from=build-stage /app/dist ./dist
 
 # COPY --from=build-stage /app/dist /usr/share/nginx/htm
 RUN npm install -g serve
