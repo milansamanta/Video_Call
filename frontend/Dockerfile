@@ -14,5 +14,5 @@ RUN npm run build
 RUN npm install -g serve
 
 EXPOSE 80
-CMD ["serve", "-s", "dist", "-l", "80"]
+CMD ["sh", "-c", "serve -s dist -l 80"]
 # CMD ["nginx", "-g", "daemon off;"]
