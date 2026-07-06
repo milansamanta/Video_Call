@@ -1,14 +1,16 @@
 {
   "services": {
     "web-frontend": {
-      "root": "./",
+      "root": ".",
       "entrypoint": "Dockerfile.vercel"
     }
   },
-  "routes": [
+  "rewrites": [
     {
-      "src": "/(.*)",
-      "dest": "web-frontend"
+      "source": "/(.*)",
+      "destination": {
+        "service": "web-frontend"
+      }
     }
   ]
 }

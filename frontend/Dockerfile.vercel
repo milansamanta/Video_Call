@@ -9,9 +9,11 @@ RUN npm ci
 COPY . .
 
 RUN npm run build
-COPY --from=build-stage /app/dist ./dist
 
-# COPY --from=build-stage /app/dist /usr/share/nginx/htm
+FROM node:20-alpine AS production-stage
+WORKDIR /app
+
+COPY --from=build-stage /app/dist ./dist
 RUN npm install -g serve
 
 EXPOSE 80
