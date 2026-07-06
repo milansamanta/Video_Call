@@ -1,5 +1,7 @@
 FROM node:20-alpine AS build-stage
 
+ENV VITE_API_URI=https://backend-image-w2bv.onrender.com
+
 WORKDIR /app
 
 COPY package*.json ./
